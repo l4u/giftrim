@@ -7,6 +7,8 @@ require_relative "core_ext/array"
 module Giftrim
   class << self
     attr_accessor :timeout
+    attr_accessor :processor
+    Giftrim.processor = "gifsicle"
 
     def frame_number_wanted total_number, target_number
       (0..(total_number-2)).to_a.spread(target_number)
@@ -159,7 +161,7 @@ module Giftrim
     end
 
     def number_of_frames
-      command = "gifsicle --info #{@path}"
+      command = "#{Giftrim.processor} --info #{@path}"
       output = run_command command
       if output
         first_line = output.lines.first
@@ -177,7 +179,7 @@ module Giftrim
       @outfile.binmode
       @outfile.close
 
-      command = "gifsicle --resize-fit '300x300' #{@path} #{frames_formatted} > #{@outfile.path}"
+      command = "#{Giftrim.processor} --resize-fit '300x300' #{@path} #{frames_formatted} > #{@outfile.path}"
       output = run_command command
       if output
         @tempfile = @outfile
