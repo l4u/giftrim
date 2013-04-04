@@ -22,6 +22,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency("simplecov", "~> 0.7")
   spec.add_development_dependency("simplecov-gem-adapter", "~> 1.0.1")
+  spec.add_development_dependency 'coveralls'
+
   spec.add_runtime_dependency("subexec", ["~> 0.2.2"])
 
 
