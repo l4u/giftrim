@@ -2,9 +2,11 @@ require_relative "test_helper"
 require File.expand_path('../../lib/giftrim.rb', __FILE__)
 
 describe Giftrim do
-  it "must be allowed to change processor or the path of gifsicle" do
-    Giftrim.processor = "/usr/local/bin/gifsicle"
-    Giftrim.processor.must_equal "/usr/local/bin/gifsicle"
+  describe "processor" do
+    it "must be allowed to change processor or the path of gifsicle" do
+      Giftrim.processor = "/usr/local/bin/gifsicle"
+      Giftrim.processor.must_equal "/usr/local/bin/gifsicle"
+    end
   end
 
   it "must return frames wanted" do
