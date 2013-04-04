@@ -179,7 +179,7 @@ module Giftrim
       @outfile.binmode
       @outfile.close
 
-      command = "#{Giftrim.processor} --resize-fit '300x300' #{@path} #{frames_formatted} > #{@outfile.path}"
+      command = "#{Giftrim.processor} --unoptimize -O2 --no-comments --no-names --same-delay --same-loopcount --no-warnings --resize-fit '300x300' #{@path} #{frames_formatted} > #{@outfile.path}"
       output = run_command command
       if output
         @tempfile = @outfile
