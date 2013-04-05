@@ -171,15 +171,30 @@ module Giftrim
     end
 
     def trim
-      # --batch to modify the GIF file in place (not working for frames)
-      frames = Giftrim::frame_number_wanted self.number_of_frames, 10
-      frames_formatted = frames.map{|frame| "\"##{frame}\""}.join " "
-
       @outfile = Tempfile.new('giftrim_')
       @outfile.binmode
       @outfile.close
 
+      frames = Giftrim::frame_number_wanted self.number_of_frames, 10
+      frames_formatted = frames.map{|frame| "\"##{frame}\""}.join " "
       command = "#{Giftrim.processor} --unoptimize -O2 --no-comments --no-names --same-delay --same-loopcount --no-warnings --resize-fit '300x300' #{@path} #{frames_formatted} > #{@outfile.path}"
+      trim_run_command command
+    end
+
+    def trim_with_target_frame_number frame_number
+      @outfile = Tempfile.new('giftrim_')
+      @outfile.binmode
+      @outfile.close
+
+      frames = Giftrim::frame_number_wanted self.number_of_frames, 10
+      frames_formatted = frames.map{|frame| "\"##{frame}\""}.join " "
+      command = "#{Giftrim.processor} --unoptimize -O2 --no-comments --no-names --same-delay --same-loopcount --no-warnings #{@path} #{frames_formatted} > #{@outfile.path}"
+      trim_run_command command
+    end
+
+    private
+    def trim_run_command command
+
       output = run_command command
       if output
         @tempfile = @outfile
