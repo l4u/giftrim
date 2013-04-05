@@ -2,7 +2,7 @@
 
 Provide convenient methods for GIF optimizations using gifsicle
 
-Tested on the following Rubies: MRI 1.9.3, 2.0.0, Rubinius.
+Tested on the following Rubies: MRI 1.9.3, 2.0.0, Rubinius, JRuby (1.9 mode).
 
 [![Gem Version](https://badge.fury.io/rb/giftrim.png)](http://badge.fury.io/rb/giftrim)
 [![Build Status](https://secure.travis-ci.org/l4u/giftrim.png?branch=master)](http://travis-ci.org/l4u/giftrim)
