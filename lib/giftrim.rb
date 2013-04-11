@@ -177,7 +177,7 @@ module Giftrim
 
       frames = Giftrim::frame_number_wanted self.number_of_frames, 10
       frames_formatted = frames.map{|frame| "\"##{frame}\""}.join " "
-      command = "#{Giftrim.processor} --unoptimize -O2 --no-comments --no-names --same-delay --same-loopcount --no-warnings --resize-fit '300x300' #{@path} #{frames_formatted} > #{@outfile.path}"
+      command = "#{Giftrim.processor} --unoptimize -O2 --no-comments --no-names --delay 20 --same-loopcount --no-warnings --resize-fit '300x300' #{@path} #{frames_formatted} > #{@outfile.path}"
       trim_run_command command
     end
 
@@ -188,7 +188,7 @@ module Giftrim
 
       frames = Giftrim::frame_number_wanted self.number_of_frames, 10
       frames_formatted = frames.map{|frame| "\"##{frame}\""}.join " "
-      command = "#{Giftrim.processor} --unoptimize -O2 --no-comments --no-names --same-delay --same-loopcount --no-warnings #{@path} #{frames_formatted} > #{@outfile.path}"
+      command = "#{Giftrim.processor} --unoptimize -O2 --no-comments --no-names --delay 20 --same-loopcount --no-warnings #{@path} #{frames_formatted} > #{@outfile.path}"
       trim_run_command command
     end
 
